@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление медикаментов</title>
+</head>
+<body>
+<h3 th:text="'Добавление медикаментов в аптеку - ' + ${pharmacy.title}"></h3>
+<form method="post">
+    <input name="name" placeholder="Название" required>
+    <input name="country" placeholder="Страна производитель" required>
+    <input type="number" name="count" placeholder="Кол-во" required>
+    <input name="price" placeholder="Цена, руб." required>
+    <button type="submit">Добавить</button>
+</form>
+</body>
+</html>

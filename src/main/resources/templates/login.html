@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: common_head(~{::title})}">
+    <title>Авторизация</title>
+</head>
+
+<body>
+
+<main>
+    <div class="block_form" th:if="${isLogin == false}">
+        <form th:replace="~{fragments/login :: login_is_false}"></form>
+    </div>
+
+    <div class="block_form" th:if="${isLogin == true}">
+        <form th:replace="~{fragments/login :: login_is_true}"></form>
+    </div>
+</main>
+</body>
+</html>

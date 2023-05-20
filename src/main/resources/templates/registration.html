@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+</head>
+<body>
+<h2>Регистрация нового аккаунта:</h2>
+<form action="/registration" method="post">
+    <input name="login" placeholder="Логин" required>
+    <input name="password" placeholder="Пароль" required>
+    <input name="name_company" placeholder="Название компании" required>
+    <input name="phone_company" placeholder="Телефон компании" required>
+    <input name="link_company" placeholder="Веб-сайт компании" required>
+    <button type="submit">Зарегистрироваться</button>
+</form>
+</body>
+</html>

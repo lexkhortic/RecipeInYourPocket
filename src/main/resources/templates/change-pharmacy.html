@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование аптеки</title>
+</head>
+<body>
+<h3 th:text="'Редактирование аптеки - ' + ${pharmacy.title}"></h3>
+<form method="post">
+    <input th:value="${pharmacy.city}" name="city" placeholder="Город" required>
+    <input th:value="${pharmacy.address}" name="address" placeholder="Адрес" required>
+    <input th:value="${pharmacy.title}" name="title" placeholder="Название аптеки" required>
+    <input th:value="${pharmacy.phone}" name="phone" placeholder="Телефон аптеки" required>
+    <input th:value="${pharmacy.latitude}" name="latitude" placeholder="Широта" required>
+    <input th:value="${pharmacy.longitude}" name="longitude" placeholder="Долгота" required>
+    <button type="submit">Применить</button>
+    <a th:href="@{/company/{owner_id}/{pharm_id}(owner_id=${ownerID}, pharm_id=${pharmacy.id})}">
+        <button>Отменить</button>
+    </a>
+</form>
+</body>
+</html>

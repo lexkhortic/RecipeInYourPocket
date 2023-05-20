@@ -1,0 +1,128 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.body_index {
+    background-color: rgb(236,249,250);
+}
+
+.main_index {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.container_index {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+#content, #form_request, #input_container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#changeElem {
+    width: auto;
+    display: flex;
+    align-items: center;
+}
+
+.text_index {
+    font-size: 18px;
+    font-family: 'Pacifico', cursive;
+}
+
+.plus {
+    margin-left: 10px;
+}
+
+.minus {
+    margin-left: 5px;
+}
+
+.plus_minus_btn {
+    width: 30px;
+    height: 30px;
+    font-size: 25px;
+    text-align: center;
+    border-radius: 50%;
+    border-width: 0;
+    background-color: rgba(48, 202, 217, 0.85);
+}
+
+.plus_minus_btn:hover, .submit_button:hover {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+    transform: translateY(-4px);
+}
+
+.plus_minus_btn:active, .submit_button:active {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+    transform: translateY(0px);
+}
+
+.minus_disabled {
+    width: 30px;
+    height: 30px;
+    font-size: 25px;
+    border-radius: 50%;
+    border-width: 0px;
+    background-color: rgb(161, 161, 161);
+}
+
+.minus_disabled:active {
+    box-shadow: none;
+    transform: none;
+}
+
+.minus_disabled:hover {
+    box-shadow: none;
+    transform: none;
+}
+
+.input_value {
+    margin: 5px 0;
+    width: auto;
+    height: 30px;
+    border-radius: 15px;
+    border: 0 solid black;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    font-size: 18px;
+    color: rgb(0, 0, 0);
+    outline: none;
+}
+
+.submit_button {
+    margin-top: 5px;
+    width: 110px;
+    height: 36px;
+    font-size: 20px;
+    font-family: 'Pacifico', cursive;
+    text-align: center;
+    border-radius: 18px;
+    border-width: 0;
+    background-color: rgb(54, 206, 142);
+}
+
+.map {
+    width: 100vw;
+    height: 400px;
+}
+
+#yandex_maps {
+    border: 1px solid rgb(24, 164, 189);
+    width: 100%;
+    height: 100%;
+}
+
+.nameTitleMap {
+    text-align: right;
+    margin-bottom: 5px;
+    margin-right: 15px;
+}
+

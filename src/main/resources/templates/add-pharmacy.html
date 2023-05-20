@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Создание аптеки</title>
+</head>
+<body>
+<h3 th:text="${owner.nameCompany}"></h3>
+<h3 th:text="'Создание аптеки:'"></h3>
+<form method="post">
+    <input name="city" placeholder="Город" required>
+    <input name="address" placeholder="Адрес" required>
+    <input name="title" placeholder="Название аптеки" required>
+    <input name="phone" placeholder="Телефон аптеки" required>
+    <input name="latitude" placeholder="Широта" required>
+    <input name="longitude" placeholder="Долгота" required>
+    <button type="submit">Создать аптеку</button>
+</form>
+</body>
+</html>

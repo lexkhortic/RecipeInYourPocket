@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование медикаментов</title>
+</head>
+<body>
+<h3 th:text="${pharmacy.title}"></h3>
+<h3 th:text="'Редактирование медикамента: ' + ${medicine.name}"></h3>
+<form method="post">
+    <input th:value="${medicine.name}" name="name" placeholder="Название" required>
+    <input th:value="${medicine.countryManufacturer}"name="country" placeholder="Страна производитель" required>
+    <input th:value="${medicine.count}" type="number" name="count" placeholder="Кол-во" required>
+    <input th:value="${medicine.price}" name="price" placeholder="Цена, руб." required>
+    <button type="submit">Изменить</button>
+    <a th:href="@{/company/{owner_id}/{pharm_id}(owner_id=${ownerID}, pharm_id=${pharmacy.id})}">
+        <button>Отменить</button>
+    </a>
+</form>
+</body>
+</html>

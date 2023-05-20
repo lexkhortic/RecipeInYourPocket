@@ -1,0 +1,117 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.txt_sign_up {
+    text-decoration: underline;
+}
+
+.block_form {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    padding: 10px;
+    background-color: rgb(236,249,250);
+}
+
+.log_form {
+    display: flex;
+}
+
+.container_form_login {
+    margin: auto;
+    width: auto;
+    height: 400px;
+    display: flex;
+    border-radius: 5px;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 10px;
+    background-color: rgba(153, 214, 220, 0.58);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+}
+
+.container_form_entered {
+    margin: auto;
+    width: auto;
+    height: 250px;
+    display: flex;
+    border-radius: 5px;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 10px;
+    background-color: rgba(153, 214, 220, 0.58);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+}
+
+.authorization {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.welcome {
+    font-family: 'Pacifico', cursive;
+    font-size: 40px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.log_pass_input {
+    margin: 5px 5px;
+    width: auto;
+    height: 30px;
+    border-radius: 10px;
+    border: 0 solid black;
+    text-align: center;
+    font-size: 18px;
+    color: rgb(0, 0, 0);
+    outline: none;
+}
+
+.log_button {
+    margin: 10px 45px;
+    width: 150px;
+    height: 35px;
+    font-family: 'Pacifico', cursive;
+    text-align: center;
+    font-size: 20px;
+    border-radius: 20px;
+    color: black;
+    text-decoration: none;
+    border-width: 0;
+    background-color: rgba(48, 202, 217, 0.85);
+}
+
+.login_span {
+    margin-bottom: 4px;
+}
+
+.log_button:hover {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+    transform: translateY(-4px);
+}
+
+.log_button:active {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+    transform: translateY(0px);
+}
+
+.sign_up {
+    font-family: 'Pacifico', cursive;
+    text-align: center;
+    font-size: 13px;
+    color: #414040;
+}
+
+.error {
+    font-family: 'Pacifico', cursive;
+    font-size: 14px;
+    color: #f52424;
+    text-align: center;
+    padding-bottom: 20px;
+}
+

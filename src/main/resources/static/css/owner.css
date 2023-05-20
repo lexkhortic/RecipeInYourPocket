@@ -1,0 +1,145 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+.body_owner {
+    background-color: rgb(236,249,250);
+}
+
+.title_company {
+    font-size: 30px;
+    text-align: center;
+    font-family: 'Pacifico', cursive;
+}
+
+.href_pharmacy {
+    color: black;
+    text-decoration: none;
+}
+
+.container_sections {
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+}
+
+.pharmacy_bar {
+    margin-right: 20px;
+    width: 15%;
+}
+
+.text_owner {
+    font-family: 'Pacifico', cursive;
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.pharmacy_i {
+    width: auto;
+    height: 24px;
+    font-size: 14px;
+    text-align: left;
+    font-family: 'Rubik', sans-serif;
+    margin-bottom: 5px;
+    padding-left: 10px;
+    padding-top: 3px;
+    border: 1px solid rgb(24, 164, 189);
+    border-radius: 12px;
+    text-decoration: none;
+}
+
+.pharmacy_i:hover {
+    background-color: rgba(48, 202, 217, 0.85);
+    border-width: 0;
+    font-size: 16px;
+    padding-top: 3px;
+}
+
+.pharmacy_info_block {
+    font-family: 'Rubik', sans-serif;
+    display: flex;
+    flex-direction: column;
+    padding: 5px 0;
+}
+
+.pharmacy_info {
+    margin-bottom: 3px;
+}
+
+.pharmacy_operations {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 25px;
+}
+
+.operation {
+    width: auto;
+    height: 20px;
+    margin-right: 10px;
+    font-size: 14px;
+    padding: 2px 10px;
+    font-family: 'Rubik', sans-serif;
+    text-align: center;
+    background-color: rgba(48, 202, 217, 0.85);
+    border-radius: 10px;
+}
+
+.table_medicines {
+    font-family: 'Rubik', sans-serif;
+    margin-top: 10px;
+    border-collapse:collapse;
+    text-align: center;
+}
+
+thead {
+    background-color: rgb(202 208 209);
+}
+
+td, th {
+    width: auto;
+    padding: 0 10px;
+    height: 26px;
+    border: 1px solid rgb(24, 164, 189);
+}
+
+.td_change {
+    width: 70px;
+    border-width: 0;
+}
+
+.change, .delete {
+    width: auto;
+    height: 20px;
+    font-size: 14px;
+    padding: 2px 5px;
+    text-align: center;
+    background-color: rgba(48, 202, 217, 0.85);
+    border-radius: 10px;
+}
+
+.delete {
+    background-color: #f36f6fcc;
+}
+
+.change:hover, .operation:hover{
+    box-shadow: 0 5px 5px rgba(71, 107, 110, 0.85);
+    transform: translateY(-2px);
+}
+
+.delete:hover {
+    box-shadow: 0 5px 5px rgba(138, 61, 61, 0.85);
+    transform: translateY(-2px);
+}
+
+
+
+
+

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: common_head(~{::title})}">
+    <meta charset="UTF-8">
+    <title th:text="${company_name}">Title</title>
+</head>
+
+<body class="body_owner">
+<header th:replace="~{fragments/header :: header_owner}"></header>
+<p th:text="${company_name}" class="title_company"></p>
+
+<main>
+    <div class="container_sections">
+        <section class="pharmacy_bar">
+            <p class="text_owner">Ваши аптеки:</p>
+            <div th:if="${pharmacies != null and !pharmacies.empty}" th:each="pharmacy : ${pharmacies}">
+                <div class="pharmacy_i">
+                    <a th:href="@{/company/{owner_id}/{pharm_id}(owner_id=${ownerID}, pharm_id=${pharmacy.id})}" th:text="${pharmacy.title}" class="href_pharmacy">Тут будет аптека</a>
+                </div>
+            </div>
+
+            <div class="pharmacy_i">
+                <a th:href="@{/company/{owner_id}/add-pharm(owner_id=${ownerID})}" class="href_pharmacy" > + добавить</a>
+            </div>
+        </section>
+
+        <section class="pharmacy">
+            <div th:if="${pharmacy == null and pharmacies.empty}" class="pharmacy_info_block">
+                <div class="pharmacy_info">Добавьте вашу аптеку</div>
+            </div>
+            <div th:if="${pharmacy != null and !pharmacies.empty}" class="pharmacy_info_block">
+                <h3 th:text="${pharmacy.title}" class="pharmacy_info"></h3>
+                <div th:text="${pharmacy.city} + ', ' + ${pharmacy.address}" class="pharmacy_info"></div>
+                <div th:text="'Телефон: ' + ${pharmacy.phone}" class="pharmacy_info"></div>
+            </div>
+
+            <div th:if="${pharmacy != null and !pharmacies.empty}" class="pharmacy_operations">
+                <div class="operation">
+                    <a th:href="@{/company/{owner_id}/{pharm_id}/change-info(owner_id=${ownerID}, pharm_id=${pharmacy.id})}">Изменить информацию об аптеке</a>
+                </div>
+                <div class="operation">
+                    <a th:href="@{/company/{owner_id}/{pharm_id}/add-med(owner_id=${ownerID}, pharm_id=${pharmacy.id})}">Добавить медикаменты</a>
+                </div>
+            </div>
+
+            <div class="pharmacy_result">
+                <table th:if="${pharmacies != null and !pharmacies.empty}" class="table_medicines">
+                    <thead>
+                    <tr>
+                        <th> Медикаменты </th>
+                        <th> Страна производитель </th>
+                        <th> Наличие </th>
+                        <th> Цена, руб. </th>
+                        <th style="border-width: 0; background-color: rgb(236,249,250);">  </th>
+                        <th style="border-width: 0; background-color: rgb(236,249,250);">  </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:if="${medicines == null or medicines.empty}">
+                        <td colspan="4">В вашей аптеке нет медикаментов. Добавьте их!</td>
+                    </tr>
+                    <tr th:each="med : ${medicines}">
+                        <td><span th:text="${med.name}"></span></td>
+                        <td><span th:text="${med.countryManufacturer}"></span></td>
+                        <td><span th:text="${med.count}"></span></td>
+                        <td><span th:text="${med.price}"></span></td>
+                        <td class="td_change">
+                            <div class="change">
+                                <a th:href="@{/company/{owner_id}/{pharm_id}/change-med/{med_id}(owner_id=${ownerID}, pharm_id=${pharmacy.id}, med_id=${med.id})}" >
+                                    Изменить
+                                </a>
+                            </div>
+                        </td>
+                        <td class="td_change">
+                            <div class="delete">
+                                <a th:href="@{/company/{owner_id}/{pharm_id}/del-med/{med_id}(owner_id=${ownerID}, pharm_id=${pharmacy.id}, med_id=${med.id})}" >
+                                    Удалить
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</main>
+
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+</body>
+</html>

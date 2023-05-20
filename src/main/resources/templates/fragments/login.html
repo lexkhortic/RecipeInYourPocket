@@ -1,0 +1,39 @@
+<form th:fragment="login_is_false" class="log_form" action="/login" method="post">
+    <div class="container_form_login">
+        <div class="welcome">
+            Welcome
+            <div style="padding-top: 15px">
+                <a th:href="@{/}">
+                    <img class="img_logo" alt="" th:src="@{/img/logo-pill.png}">
+                </a>
+            </div>
+        </div>
+
+        <div class="authorization">
+            <input class="log_pass_input" type="text" name="login" placeholder="Login" required>
+            <input class="log_pass_input" type="password" name="password" placeholder="Password" required>
+            <button class="log_button">Войти</button>
+        </div>
+
+        <div>
+            <div th:text="${error}" class="error"></div>
+
+            <div class="sign_up">
+                Don’t have an account? <a class="txt_sign_up" th:href="@{/registration}"> Sign Up </a>
+            </div>
+        </div>
+    </div>
+</form>
+
+<form th:fragment="login_is_true" class="log_form">
+    <div class="container_form_entered">
+        <div class="welcome">
+            Рады вас видеть <br>
+            "<span th:text="${companyName}"></span>"
+        </div>
+
+        <div class="authorization">
+            <a th:href="@{/company/{owner_id}/{pharm_id}(owner_id=${ownerID}, pharm_id=${pharmID})}" class="log_button">Продолжить</a>
+        </div>
+    </div>
+</form>

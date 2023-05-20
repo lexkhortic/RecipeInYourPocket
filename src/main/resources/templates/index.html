@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: common_head(~{::title})}">
+    <title>Recipe In Your Pocket</title>
+</head>
+
+<body class="body_index">
+<header th:replace="~{fragments/header :: header_index}"></header>
+
+<main class="main_index">
+    <div class="container_index">
+        <div id="content">
+            <div id="changeElem">
+                <div class="text_index">Найди свой рецепт: </div>
+                <div class="plus">
+                    <button id="add_input" class="plus_minus_btn" onclick=addInput()>+</button>
+                </div>
+                <div class="minus">
+                    <button id="delete_input" class="plus_minus_btn" onclick=delInput()>-</button>
+                </div>
+            </div>
+            <form name="form_medicines" id="form_request" action="/find-medicines" enctype="multipart/form-data" method="post">
+                <div id="input_container">
+                    <input id="value" class="input_value" type="text" name="medicine_name" placeholder="Лекарство" required>
+                </div>
+                <div id="submit_data">
+                    <button onclick="findMedicines()" class="submit_button" type="submit">Найти</button>
+                </div>
+            </form>
+        </div>
+        <div class="map">
+            <div class="text_index nameTitleMap">Аптеки в твоем городе</div>
+            <div id="yandex_maps"></div>
+        </div>
+
+        <script th:inline="javascript">
+            let pharmaciesFromDB = /*[[${allPharmacies}]]*/ null
+            function pharmacy(latitude, longitude, address, title) {
+                this.latitude = latitude,
+                    this.longitude = longitude,
+                    this.address = address,
+                    this.title = title
+            }
+
+            ymaps.ready(init);
+
+            function init(){
+                var myMap = new ymaps.Map("yandex_maps", {
+                    // Координаты центра карты.
+                    // Порядок по умолчанию: «широта, долгота».
+                    center: [53.902287, 27.561824],//Минск
+                    // от 0 (весь мир) до 19.
+                    zoom: 11,
+                }, {
+                    // Поиск по организациям.
+                    searchControlProvider: 'yandex#search'
+                });
+
+                pharmaciesFromDB.forEach(pharmacy => {
+                    myMap.geoObjects.add(
+                        new ymaps.Placemark(
+                            [pharmacy.latitude, pharmacy.longitude],
+                            { balloonContent: `${pharmacy.city + ', ' + pharmacy.address}<br>${pharmacy.title}`, iconCaption: ''},
+                            { preset: 'islands#blueCircleDotIconWithCaption', iconCaptionMaxWidth: '20'}
+                        ));
+                });
+            }
+        </script>
+    </div>
+</main>
+
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+</body>

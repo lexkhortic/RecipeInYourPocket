@@ -1,9 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments/header :: common_head(~{::title})}">
     <title>Поиск лекарств</title>
 </head>
 <body>
-    Тут будут лекарства
+
+<div th:each="pharmacy : ${pharmaciesMap}">
+    <div th:text="${pharmacy.key.title}">key value</div>
+    <table>
+        <tr th:each="med, iter : ${pharmacy.value}" th:if="${iter.last} == false">
+            <td th:text="${iter.count}">Counter</td>
+            <td th:text="${med.name}">Name medicine</td>
+            <td th:text="${med.countryManufacturer}">Country medicine</td>
+            <td th:text="${med.count} + ' шт'">Count in pharmacy</td>
+            <td th:text="${med.price} + ' руб.'">Price</td>
+        </tr>
+    </table>
+    <div th:each="med, iter : ${pharmacy.value}" th:if="${iter.last} == true">
+        <div th:text="${med.name} + ${med.price} + ' руб.'"></div>
+    </div>
+</div>
 </body>
 </html>

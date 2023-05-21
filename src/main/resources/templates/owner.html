@@ -47,6 +47,7 @@
                 <table th:if="${pharmacies != null and !pharmacies.empty}" class="table_medicines">
                     <thead>
                     <tr>
+                        <th> № </th>
                         <th> Медикаменты </th>
                         <th> Страна производитель </th>
                         <th> Наличие </th>
@@ -59,7 +60,8 @@
                     <tr th:if="${medicines == null or medicines.empty}">
                         <td colspan="4">В вашей аптеке нет медикаментов. Добавьте их!</td>
                     </tr>
-                    <tr th:each="med : ${medicines}">
+                    <tr th:each="med, iter : ${medicines}">
+                        <td><span th:text="${iter.count}"></span></td>
                         <td><span th:text="${med.name}"></span></td>
                         <td><span th:text="${med.countryManufacturer}"></span></td>
                         <td><span th:text="${med.count}"></span></td>

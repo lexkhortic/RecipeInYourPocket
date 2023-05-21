@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+
 
 @Controller
 public class IndexController {
@@ -26,12 +28,17 @@ public class IndexController {
     @Autowired
     private PharmacyRepository pharmacyRepository;
 
+    @GetMapping("/")
+    public String startApp(Model model) {
+        model.addAttribute("allPharmacies", indexServices.getAllPharmaciesFromDB());
+        return "index";
+    }
+
     @PostMapping("/find-medicines")
     public String findMedicines(
-            @RequestParam(name = "medicine_name", required = false) Set<String> medicinesList)
+            @RequestParam(name = "medicine_name", required = false) Set<String> medicinesList,
+            Model model)
     {
-        medicinesList.forEach(System.out::println);
-
         Map<String, Set<Long>> medicinePharmaciesMap = new HashMap<>();
 
         List<Medicine> medicinesID = indexServices.findAllIDMedicines(medicinesList);
@@ -55,7 +62,6 @@ public class IndexController {
                 .map(Map.Entry::getKey)
                 .collect(Collectors.toList());
 
-        pharmaciesID.forEach(System.out::println);
 
         Map<Pharmacy, List<Medicine>> resultQuery = new HashMap<>();
         for (Long id : pharmaciesID) {
@@ -66,11 +72,13 @@ public class IndexController {
         }
 
         for (Map.Entry<Pharmacy, List<Medicine>> entry : resultQuery.entrySet()) {
-            System.out.println(entry.getKey().getTitle() + ":");
-            entry.getValue().forEach(el -> {
-                System.out.println(el.getName() + ", " + el.getPrice() + " руб.");
-            });
+            long id = entry.getKey().getId();
+            entry.getValue().add(new Medicine("Общая сумма: ", "", 0, findTotalSumPrice(entry.getValue()), id));
         }
+
+//        sortByTotalPrice(resultQuery);
+
+        model.addAttribute("pharmaciesMap", resultQuery);
 
         return "find-medicines";
     }
@@ -79,6 +87,12 @@ public class IndexController {
         return pharmacy.getMedicinesList().stream()
                 .filter(el -> checkMedicineInList(el.getName(), medicineList))
                 .collect(Collectors.toList());
+    }
+
+    private double findTotalSumPrice(List<Medicine> medicines) {
+        AtomicReference<Double> totalPrice = new AtomicReference<>((double) 0);
+        medicines.forEach(el -> totalPrice.updateAndGet(tPrice -> tPrice + el.getPrice()));
+        return (double) Math.round(totalPrice.get() * 100) / 100;
     }
 
     private boolean checkMedicineInList(String medicine, Set<String> medicineList) {
@@ -91,10 +105,27 @@ public class IndexController {
         return isHas.get();
     }
 
-    @GetMapping("/")
-    public String startApp(Model model) {
-        model.addAttribute("allPharmacies", indexServices.getAllPharmaciesFromDB());
-        return "index";
-    }
-
+//    private static Map<Pharmacy, List<Medicine>> sortByTotalPrice(Map<Pharmacy, List<Medicine>> map) {
+//
+//        class TotalPriceComparator implements Comparator<List<Medicine>> {
+//            @Override
+//            public int compare(List<Medicine> o1, List<Medicine> o2) {
+//                return (int) (o1.get(o1.size()-1).getPrice() - o2.get(o2.size()-1).getPrice());
+//            }
+//        }
+//
+//        Comparator<List<Medicine>> totalPriceComparator = new TotalPriceComparator();
+//
+//        Map<Pharmacy, List<Medicine>> sortedMap = map
+//                .entrySet()
+//                .stream()
+//                .sorted(Map.Entry.comparingByValue())
+//                .collect(
+//                        Collectors.toMap(e -> e.getKey(), e -> e.getValue().get(e.getValue().size()-1), (e1, e2) -> e2,
+//                                LinkedHashMap::new));
+//
+//        return sortedMap;
+//    }
 }
+
+

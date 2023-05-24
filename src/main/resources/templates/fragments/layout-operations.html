@@ -1,0 +1,104 @@
+<div th:fragment="create-pharmacy" class="operation_main">
+  <form class="operation_form" method="post">
+    <div class="operation_container_form">
+      <div class="close">
+        <a th:href="@{/company/{owner_id}/{pharm_id}(owner_id=${owner.id}, pharm_id=${pharmacyID})}">
+          <img class="img_close" alt="" th:src="@{/img/close.svg}">
+        </a>
+      </div>
+      <div class="operation_info">
+        <div th:text="${owner.nameCompany}"></div>
+        <div style="font-size: 25px">Создание аптеки: </div>
+      </div>
+
+      <div class="inputs">
+        <input class="operation_input" name="city" placeholder="Город" required>
+        <input class="operation_input" name="address" placeholder="Адрес" required>
+        <input class="operation_input" name="title" placeholder="Название аптеки" required>
+        <input class="operation_input" name="phone" placeholder="Телефон аптеки" required>
+        <input class="operation_input" name="latitude" placeholder="Широта" required>
+        <input class="operation_input" name="longitude" placeholder="Долгота" required>
+        <button class="submit_button" type="submit">Создать</button>
+        <div th:text="${error}" class="error"></div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div th:fragment="change-pharmacy" class="operation_main">
+  <form class="operation_form" method="post">
+    <div class="operation_container_form">
+      <div class="close">
+        <a th:href="@{/company/{owner_id}/{pharm_id}(owner_id=${ownerID}, pharm_id=${pharmacy.id})}">
+          <img class="img_close" alt="" th:src="@{/img/close.svg}">
+        </a>
+      </div>
+      <div class="operation_info">
+        <div th:text="${pharmacy.title}"></div>
+        <div style="font-size: 25px">Редактирование аптеки: </div>
+      </div>
+
+      <div class="inputs">
+        <input th:value="${pharmacy.city}" class="operation_input" name="city" placeholder="Город" required>
+        <input th:value="${pharmacy.address}" class="operation_input" name="address" placeholder="Адрес" required>
+        <input th:value="${pharmacy.title}" class="operation_input" name="title" placeholder="Название аптеки" required>
+        <input th:value="${pharmacy.phone}" class="operation_input" name="phone" placeholder="Телефон аптеки" required>
+        <input th:value="${pharmacy.latitude}" class="operation_input" name="latitude" placeholder="Широта" required>
+        <input th:value="${pharmacy.longitude}" class="operation_input" name="longitude" placeholder="Долгота" required>
+        <button class="submit_button" type="submit">Применить</button>
+        <div th:text="${error}" class="error"></div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div th:fragment="add-medicine" class="operation_main">
+  <form class="operation_form" method="post">
+    <div class="operation_container_form">
+      <div class="close">
+        <a th:href="@{/company/{owner_id}/{pharm_id}(owner_id=${ownerID}, pharm_id=${pharmacy.id})}">
+          <img class="img_close" alt="" th:src="@{/img/close.svg}">
+        </a>
+      </div>
+      <div class="operation_info">
+        <div th:text="${pharmacy.title}"></div>
+        <div style="font-size: 25px">Добавление медикамента: </div>
+      </div>
+
+      <div class="inputs">
+        <input class="operation_input" name="name" placeholder="Название" required>
+        <input class="operation_input" name="country" placeholder="Страна производитель" required>
+        <input class="operation_input" type="number" name="count" placeholder="Кол-во" required>
+        <input class="operation_input" name="price" placeholder="Цена, руб." required>
+        <button class="submit_button" type="submit">Добавить</button>
+        <div th:text="${error}" class="error"></div>
+      </div>
+    </div>
+  </form>
+</div>
+
+
+<div th:fragment="change-medicine" class="operation_main">
+  <form class="operation_form" method="post">
+    <div class="operation_container_form">
+      <div class="close">
+        <a th:href="@{/company/{owner_id}/{pharm_id}(owner_id=${ownerID}, pharm_id=${pharmacy.id})}">
+          <img class="img_close" alt="" th:src="@{/img/close.svg}">
+        </a>
+      </div>
+      <div class="operation_info">
+        <div th:text="${pharmacy.title}"></div>
+        <div th:text="'Редактирование медикамента: ' + ${medicine.name}" style="font-size: 25px"></div>
+      </div>
+
+      <div class="inputs">
+        <input th:value="${medicine.name}" class="operation_input" name="name" placeholder="Название" required>
+        <input th:value="${medicine.countryManufacturer}" class="operation_input" name="country" placeholder="Страна производитель" required>
+        <input th:value="${medicine.count}" class="operation_input" type="number" name="count" placeholder="Кол-во" required>
+        <input th:value="${medicine.price}" class="operation_input" name="price" placeholder="Цена, руб." required>
+        <button class="submit_button" type="submit">Изменить</button>
+        <div th:text="${error}" class="error"></div>
+      </div>
+    </div>
+  </form>
+</div>

@@ -13,4 +13,5 @@ public interface OwnerDaoServices {
     void addMedicineToPharmacy(long pharmID, String name, String country, int count, double price);
     void changeMedicineFromPharmacyByID(long medID, String name, String country, int count, double price);
     void deleteMedicineFromPharmacyByID(long medID);
+    void deletePharmacyByID(long pharmID);
 }

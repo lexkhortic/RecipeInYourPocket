@@ -20,7 +20,7 @@
             </div>
 
             <div class="pharmacy_i">
-                <a th:href="@{/company/{owner_id}/add-pharm(owner_id=${ownerID})}" class="href_pharmacy" > + добавить</a>
+                <a th:href="@{/company/{owner_id}/create-pharm(owner_id=${ownerID})}" class="href_pharmacy" > + добавить</a>
             </div>
         </section>
 
@@ -36,10 +36,19 @@
 
             <div th:if="${pharmacy != null and !pharmacies.empty}" class="pharmacy_operations">
                 <div class="operation">
-                    <a th:href="@{/company/{owner_id}/{pharm_id}/change-info(owner_id=${ownerID}, pharm_id=${pharmacy.id})}">Изменить информацию об аптеке</a>
+                    <a th:href="@{/company/{owner_id}/{pharm_id}/change-info(owner_id=${ownerID}, pharm_id=${pharmacy.id})}">
+                        Изменить информацию об аптеке
+                    </a>
                 </div>
                 <div class="operation">
-                    <a th:href="@{/company/{owner_id}/{pharm_id}/add-med(owner_id=${ownerID}, pharm_id=${pharmacy.id})}">Добавить медикаменты</a>
+                    <a th:href="@{/company/{owner_id}/{pharm_id}/add-med(owner_id=${ownerID}, pharm_id=${pharmacy.id})}">
+                        Добавить медикаменты
+                    </a>
+                </div>
+                <div class="operation delete">
+                    <a th:href="@{/company/{owner_id}/{pharm_id}/delete-pharm(owner_id=${ownerID}, pharm_id=${pharmacy.id})}">
+                        Удалить аптеку
+                    </a>
                 </div>
             </div>
 
@@ -58,7 +67,7 @@
                     </thead>
                     <tbody>
                     <tr th:if="${medicines == null or medicines.empty}">
-                        <td colspan="4">В вашей аптеке нет медикаментов. Добавьте их!</td>
+                        <td colspan="5">В вашей аптеке нет медикаментов. Добавьте их!</td>
                     </tr>
                     <tr th:each="med, iter : ${medicines}">
                         <td><span th:text="${iter.count}"></span></td>

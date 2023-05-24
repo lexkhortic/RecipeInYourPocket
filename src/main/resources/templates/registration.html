@@ -22,11 +22,11 @@
             </div>
 
             <div class="reg_inputs">
-                <input class="reg_pass_input" type="text" name="login" placeholder="Логин" required>
-                <input class="reg_pass_input" type="password" name="password" placeholder="Пароль" required>
-                <input class="reg_pass_input" type="text" name="name_company" placeholder="Название компании" required>
-                <input class="reg_pass_input" type="text" name="phone_company" placeholder="Телефон компании" required>
-                <input class="reg_pass_input" type="text" name="link_company" placeholder="Веб-сайт компании" required>
+                <input th:value="${login}" class="reg_date_input" type="text" name="login" placeholder="Логин" required>
+                <input class="reg_date_input" type="password" name="password" placeholder="Пароль" required>
+                <input th:value="${name_company}" class="reg_date_input" type="text" name="name_company" placeholder="Название компании" required>
+                <input th:value="${phone_company}" class="reg_date_input" type="text" name="phone_company" placeholder="Телефон компании" required>
+                <input th:value="${link_company}" class="reg_date_input" type="text" name="link_company" placeholder="Веб-сайт компании" required>
                 <div th:text="${error}" class="error"></div>
                 <button class="log_button" type="submit">Let's do it!</button>
             </div>
@@ -34,6 +34,5 @@
         </div>
     </form>
 </div>
-20
 </body>
 </html>

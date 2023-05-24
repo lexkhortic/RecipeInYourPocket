@@ -44,14 +44,21 @@ public class OwnerController {
         return "owner";
     }
 
-    @GetMapping("/company/{ownerID}/add-pharm")
-    public String addNewPharmacy(@PathVariable long ownerID, Model model) {
-        model.addAttribute("owner", ownerServices.findOwnerByID(ownerID));
-        return "add-pharmacy";
+    @GetMapping("/company/{ownerID}/create-pharm")
+    public String createNewPharmacy(@PathVariable long ownerID, Model model) {
+        model.addAttribute("operation", "create_pharmacy");
+        Owner owner = ownerServices.findOwnerByID(ownerID);
+        model.addAttribute("owner", owner);
+        if (owner.getPharmaciesList().isEmpty() || owner.getPharmaciesList() == null) {
+            model.addAttribute("pharmacyID", 0);
+        } else {
+            model.addAttribute("pharmacyID", owner.getPharmaciesList().get(0).getId());
+        }
+        return "operations";
     }
 
-    @PostMapping("/company/{ownerID}/add-pharm")
-    public String addNewPharmacy(
+    @PostMapping("/company/{ownerID}/create-pharm")
+    public String createNewPharmacy(
             @PathVariable long ownerID,
             @RequestParam(
                     name = "city",
@@ -78,8 +85,10 @@ public class OwnerController {
 
     @GetMapping("/company/{ownerID}/{pharmID}/add-med")
     public String addNewMedicine(@PathVariable long ownerID, @PathVariable long pharmID, Model model) {
+        model.addAttribute("operation", "add_medicine");
+        model.addAttribute("ownerID", ownerID);
         model.addAttribute("pharmacy", ownerServices.findPharmacyByID(pharmID));
-        return "add-medicine";
+        return "operations";
     }
 
     @PostMapping("/company/{ownerID}/{pharmID}/add-med")
@@ -105,9 +114,10 @@ public class OwnerController {
 
     @GetMapping("/company/{ownerID}/{pharmID}/change-info")
     public String changeInfoAboutPharmacy(@PathVariable long ownerID, @PathVariable long pharmID, Model model) {
+        model.addAttribute("operation", "change_pharmacy");
         model.addAttribute("pharmacy", ownerServices.findPharmacyByID(pharmID));
         model.addAttribute("ownerID", ownerID);
-        return "change-pharmacy";
+        return "operations";
     }
 
     @PostMapping("/company/{ownerID}/{pharmID}/change-info")
@@ -139,10 +149,11 @@ public class OwnerController {
 
     @GetMapping("/company/{ownerID}/{pharmID}/change-med/{medID}")
     public String changeMedicineFromPharmacy(@PathVariable long ownerID, @PathVariable long pharmID, Model model, @PathVariable long medID) {
+        model.addAttribute("operation", "change_medicine");
         model.addAttribute("pharmacy", ownerServices.findPharmacyByID(pharmID));
         model.addAttribute("medicine", ownerServices.findMedicineByID(medID));
         model.addAttribute("ownerID", ownerID);
-        return "change-medicine";
+        return "operations";
     }
 
     @PostMapping("/company/{ownerID}/{pharmID}/change-med/{medID}")
@@ -171,6 +182,18 @@ public class OwnerController {
     public String deleteMedicineFromPharmacy(@PathVariable long ownerID, @PathVariable long pharmID, @PathVariable long medID) {
         ownerServices.deleteMedicineFromPharmacyByID(medID);
         return "redirect:/company/" + ownerID + "/" + pharmID;
+    }
+
+    @GetMapping("/company/{owner_id}/{pharm_id}/delete-pharm")
+    public String deletePharmacy(@PathVariable long owner_id, @PathVariable long pharm_id) {
+        ownerServices.deletePharmacyByID(pharm_id);
+        Owner owner = ownerServices.findOwnerByID(owner_id);
+        if (owner.getPharmaciesList().isEmpty() || owner.getPharmaciesList() == null) {
+            return "redirect:/company/" + owner_id + "/0";
+        } else {
+            return "redirect:/company/" + owner_id + "/" + owner.getPharmaciesList().get(0);
+        }
+
     }
 
 }

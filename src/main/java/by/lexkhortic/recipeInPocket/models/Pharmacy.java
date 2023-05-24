@@ -31,7 +31,7 @@ public class Pharmacy implements Serializable {
     @Column(name = "longitude")
     private double longitude;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "pharmacy_id", referencedColumnName = "id")
     private List<Medicine> medicinesList;
 

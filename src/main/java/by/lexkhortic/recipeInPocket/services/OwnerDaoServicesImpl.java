@@ -93,4 +93,9 @@ public class OwnerDaoServicesImpl implements OwnerDaoServices{
     public void deleteMedicineFromPharmacyByID(long medID) {
         medicineRepository.delete(medicineRepository.getReferenceById(medID));
     }
+
+    @Override
+    public void deletePharmacyByID(long pharmID) {
+        pharmacyRepository.delete(pharmacyRepository.getReferenceById(pharmID));
+    }
 }

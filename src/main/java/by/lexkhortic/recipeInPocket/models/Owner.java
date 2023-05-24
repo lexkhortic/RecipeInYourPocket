@@ -34,7 +34,7 @@ public class Owner implements Serializable {
     @Column(name = "link_company")
     private String linkCompany;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "owner_id", referencedColumnName = "id")
     private List<Pharmacy> pharmaciesList;
 

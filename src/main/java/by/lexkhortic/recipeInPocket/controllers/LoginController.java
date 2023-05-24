@@ -32,7 +32,6 @@ public class LoginController {
             Model model)
     {
         if (login != null && password != null) {
-            System.out.println("Ввели пароль и логин");
             Owner owner = loginService.checkOwnerByLoginAndPassword(login, password);
             if (owner == null) {
                 System.out.println("Owner does not exist");
@@ -50,7 +49,6 @@ public class LoginController {
             }
             return "login";
         } else {
-            System.out.println("Первый вход");
             model.addAttribute("isLogin", false);
             return "login";
         }
@@ -60,7 +58,6 @@ public class LoginController {
     public String registration() {
         return "registration";
     }
-
 
     @PostMapping("/registration")
     public String registration(
@@ -83,8 +80,7 @@ public class LoginController {
     )
     {
         if (loginService.checkOwnerByLogin(login)) {
-            model.addAttribute("login", "211312313");
-            model.addAttribute("password", password);
+            model.addAttribute("login", login);
             model.addAttribute("name_company", company);
             model.addAttribute("phone_company", phone);
             model.addAttribute("link_company", link);

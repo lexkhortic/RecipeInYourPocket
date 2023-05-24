@@ -78,13 +78,23 @@ public class LoginController {
                     required = false) String phone,
             @RequestParam(
                     name = "link_company",
-                    required = false) String link
+                    required = false) String link,
+            Model model
     )
     {
-        loginService.registerNewOwner(login, password, company, phone, link);
-        System.out.println("Владелец добавлен...");
-        return "redirect:/login";
-
+        if (loginService.checkOwnerByLogin(login)) {
+            model.addAttribute("login", "211312313");
+            model.addAttribute("password", password);
+            model.addAttribute("name_company", company);
+            model.addAttribute("phone_company", phone);
+            model.addAttribute("link_company", link);
+            model.addAttribute("error", "Логин уже существует");
+            return "registration";
+        } else {
+            Long ownerID = loginService.registerNewOwner(login, password, company, phone, link);
+            System.out.println("Владелец добавлен... ID - " + ownerID);
+            return "redirect:/company/" + ownerID + "/0";
+        }
     }
 
 }

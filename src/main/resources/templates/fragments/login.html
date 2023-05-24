@@ -1,11 +1,14 @@
 <form th:fragment="login_is_false" class="log_form" action="/login" method="post">
     <div class="container_form_login">
+        <div class="close">
+            <a th:href="@{/}">
+                <img class="img_close" alt="" th:src="@{/img/close.svg}">
+            </a>
+        </div>
         <div class="welcome">
             Welcome
             <div style="padding-top: 15px">
-                <a th:href="@{/}">
-                    <img class="img_logo" alt="" th:src="@{/img/logo-pill.png}">
-                </a>
+                <img class="img_logo" alt="" th:src="@{/img/logo-pill.png}">
             </div>
         </div>
 

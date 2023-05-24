@@ -1,18 +1,39 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
+<head th:replace="~{fragments/header :: common_head(~{::title})}">
     <title>Регистрация</title>
 </head>
 <body>
-<h2>Регистрация нового аккаунта:</h2>
-<form action="/registration" method="post">
-    <input name="login" placeholder="Логин" required>
-    <input name="password" placeholder="Пароль" required>
-    <input name="name_company" placeholder="Название компании" required>
-    <input name="phone_company" placeholder="Телефон компании" required>
-    <input name="link_company" placeholder="Веб-сайт компании" required>
-    <button type="submit">Зарегистрироваться</button>
-</form>
+
+<div class="reg_main">
+    <form class="reg_form" action="/registration" method="post">
+
+        <div class="reg_container_form">
+            <div class="close">
+                <a th:href="@{/}">
+                    <img class="img_close" alt="" th:src="@{/img/close.svg}">
+                </a>
+            </div>
+            <div class="reg_info">
+                Registration
+                <div style="padding-top: 15px">
+                    <img class="img_logo" alt="" th:src="@{/img/logo-pill.png}">
+                </div>
+            </div>
+
+            <div class="reg_inputs">
+                <input class="reg_pass_input" type="text" name="login" placeholder="Логин" required>
+                <input class="reg_pass_input" type="password" name="password" placeholder="Пароль" required>
+                <input class="reg_pass_input" type="text" name="name_company" placeholder="Название компании" required>
+                <input class="reg_pass_input" type="text" name="phone_company" placeholder="Телефон компании" required>
+                <input class="reg_pass_input" type="text" name="link_company" placeholder="Веб-сайт компании" required>
+                <div th:text="${error}" class="error"></div>
+                <button class="log_button" type="submit">Let's do it!</button>
+            </div>
+
+        </div>
+    </form>
+</div>
+20
 </body>
 </html>

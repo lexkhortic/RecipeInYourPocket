@@ -1,9 +1,3 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 .txt_sign_up {
     text-decoration: underline;
 }
@@ -23,7 +17,7 @@
 .container_form_login {
     margin: auto;
     width: auto;
-    height: 400px;
+    height: auto;
     display: flex;
     border-radius: 5px;
     flex-direction: column;
@@ -36,7 +30,7 @@
 .container_form_entered {
     margin: auto;
     width: auto;
-    height: 250px;
+    height: auto;
     display: flex;
     border-radius: 5px;
     flex-direction: column;
@@ -57,7 +51,6 @@
     font-family: 'Pacifico', cursive;
     font-size: 40px;
     text-align: center;
-    margin-bottom: 10px;
 }
 
 .log_pass_input {
@@ -86,10 +79,6 @@
     background-color: rgba(48, 202, 217, 0.85);
 }
 
-.login_span {
-    margin-bottom: 4px;
-}
-
 .log_button:hover {
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
     transform: translateY(-4px);
@@ -114,4 +103,25 @@
     text-align: center;
     padding-bottom: 20px;
 }
+
+.close {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.img_close {
+    width: 20px;
+    height: 20px;
+}
+
+.img_close:hover {
+    transform: translateY(-4px);
+}
+
+.img_close:active {
+    transform: translateY(0px);
+}
+
+
 

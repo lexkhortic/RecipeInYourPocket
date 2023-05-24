@@ -62,7 +62,7 @@
                     </tr>
                     <tr th:each="med, iter : ${medicines}">
                         <td><span th:text="${iter.count}"></span></td>
-                        <td><span th:text="${med.name}"></span></td>
+                        <td style="text-align: left"><span th:text="${med.name}"></span></td>
                         <td><span th:text="${med.countryManufacturer}"></span></td>
                         <td><span th:text="${med.count}"></span></td>
                         <td><span th:text="${med.price}"></span></td>

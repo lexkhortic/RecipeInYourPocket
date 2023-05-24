@@ -11,7 +11,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Entity
 @Table(name = "medicines")
-public class Medicine implements Serializable {
+public class Medicine implements Serializable, Comparable<Medicine> {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
@@ -32,5 +32,11 @@ public class Medicine implements Serializable {
         this.count = count;
         this.price = price;
         this.pharmacyID = pharmacyID;
+    }
+
+
+    @Override
+    public int compareTo(Medicine o) {
+        return name.compareTo(o.getName());
     }
 }

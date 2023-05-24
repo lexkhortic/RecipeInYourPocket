@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class OwnerController {
@@ -38,7 +39,7 @@ public class OwnerController {
                     .orElse(null);
             model.addAttribute("pharmacy",  pharmacy);
             assert pharmacy != null;
-            model.addAttribute("medicines", pharmacy.getMedicinesList());
+            model.addAttribute("medicines", pharmacy.getMedicinesList().stream().sorted().collect(Collectors.toList()));
         }
         return "owner";
     }
@@ -171,7 +172,5 @@ public class OwnerController {
         ownerServices.deleteMedicineFromPharmacyByID(medID);
         return "redirect:/company/" + ownerID + "/" + pharmID;
     }
-
-
 
 }

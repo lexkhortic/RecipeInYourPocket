@@ -7,7 +7,8 @@
 <header th:replace="~{fragments/header :: header_index}"></header>
 
 <div class="find_not_found" th:if="${pharmaciesMap == null or pharmaciesMap.empty}">
-    Медикаментов по вашему запросу не найдено :(
+    Медикаментов по вашему запросу не найдено :( <br><br>
+    Либо проверьте корректность ввода
 </div>
 
 <div th:unless="${pharmaciesMap == null or pharmaciesMap.empty}">

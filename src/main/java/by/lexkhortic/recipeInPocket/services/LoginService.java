@@ -21,8 +21,12 @@ public class LoginService {
         return owners.isEmpty() ? null : owners.get(0);
     }
 
-    public void registerNewOwner(String login, String password, String company, String phone, String link) {
+    public Boolean checkOwnerByLogin(String login) {
+        return ownerRepository.existsOwnerByLogin(login);
+    }
+
+    public Long registerNewOwner(String login, String password, String company, String phone, String link) {
         Owner newOwner = new Owner(login, password, Role.OWNER, company, phone, link, new ArrayList<>());
-        ownerRepository.save(newOwner);
+        return ownerRepository.save(newOwner).getId();
     }
 }

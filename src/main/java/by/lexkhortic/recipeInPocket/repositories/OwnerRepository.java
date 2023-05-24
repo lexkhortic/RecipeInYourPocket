@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface OwnerRepository extends JpaRepository<Owner, Long> {
     List<Owner> findByLoginAndPassword(String login, String password);
+    Boolean existsOwnerByLogin(String login);
 }

@@ -45,6 +45,7 @@ public class IndexController {
 
         List<Medicine> medicinesID = indexServices.findAllIDMedicines(medicinesList);
 
+        medicinesID.forEach(System.out::println);
         for (Medicine medicine : medicinesID) {
             medicinePharmaciesMap
                     .computeIfAbsent(medicine.getName(), v -> new HashSet<>())
@@ -78,8 +79,6 @@ public class IndexController {
             entry.getValue().add(new Medicine("", "", 0, findTotalSumPrice(entry.getValue()), id));
         }
 
-//        sortByTotalPrice(resultQuery);
-
         List<Pharmacy> pharmaciesList = new ArrayList<>();
         for (Map.Entry<Pharmacy, List<Medicine>> entry : resultQuery.entrySet()) {
             pharmaciesList.add(new Pharmacy(
@@ -91,6 +90,7 @@ public class IndexController {
             ));
         }
 
+//        sortByTotalPrice(resultQuery);
         model.addAttribute("pharmaciesMap", resultQuery);
         model.addAttribute("allPharmaciesWhereHaveMedicines", pharmaciesList);
 
@@ -112,7 +112,7 @@ public class IndexController {
     private boolean checkMedicineInList(String medicine, Set<String> medicineList) {
         AtomicBoolean isHas = new AtomicBoolean(false);
         medicineList.forEach(el -> {
-            if (el.equals(medicine)) {
+            if (el.equalsIgnoreCase(medicine)) {
                  isHas.set(true);
             }
         });

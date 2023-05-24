@@ -5,6 +5,8 @@ import by.lexkhortic.recipeInPocket.models.Medicine;
 import by.lexkhortic.recipeInPocket.models.Pharmacy;
 import by.lexkhortic.recipeInPocket.repositories.PharmacyRepository;
 import by.lexkhortic.recipeInPocket.services.IndexServices;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -73,12 +75,24 @@ public class IndexController {
 
         for (Map.Entry<Pharmacy, List<Medicine>> entry : resultQuery.entrySet()) {
             long id = entry.getKey().getId();
-            entry.getValue().add(new Medicine("Общая сумма: ", "", 0, findTotalSumPrice(entry.getValue()), id));
+            entry.getValue().add(new Medicine("", "", 0, findTotalSumPrice(entry.getValue()), id));
         }
 
 //        sortByTotalPrice(resultQuery);
 
+        List<Pharmacy> pharmaciesList = new ArrayList<>();
+        for (Map.Entry<Pharmacy, List<Medicine>> entry : resultQuery.entrySet()) {
+            pharmaciesList.add(new Pharmacy(
+                    entry.getKey().getCity(),
+                    entry.getKey().getAddress(),
+                    entry.getKey().getTitle(),
+                    entry.getKey().getLatitude(),
+                    entry.getKey().getLongitude()
+            ));
+        }
+
         model.addAttribute("pharmaciesMap", resultQuery);
+        model.addAttribute("allPharmaciesWhereHaveMedicines", pharmaciesList);
 
         return "find-medicines";
     }

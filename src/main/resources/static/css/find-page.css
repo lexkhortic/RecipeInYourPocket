@@ -1,0 +1,107 @@
+.find_body {
+    background-color: rgb(236,249,250);
+}
+
+.find_title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 5px 10px 0 10px;
+    font-size: 18px;
+    font-family: 'Pacifico', cursive;
+}
+
+.find_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 2px 10px 10px 10px;
+}
+
+.find_table {
+    font-family: 'Rubik', sans-serif;
+    margin-top: 10px;
+    border-collapse:collapse;
+    text-align: center;
+}
+
+.find_map {
+    width: 45%;
+    height: 350px
+}
+
+.find_total {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    text-align: right;
+    padding: 0 10px;
+    margin-top: -4px;
+}
+
+.find_not_found {
+    width: 100%;
+    height: 100px;
+    font-weight: 600;
+    font-family: 'Rubik', sans-serif;
+    text-align: center;
+    margin: 10px;
+}
+
+.find_full_pharmacy {
+
+}
+
+.find_pharmacies {
+    display: flex;
+    flex-direction: row;
+    font-family: 'Rubik', sans-serif;
+    justify-content: space-between;
+    align-items: baseline;
+    margin: 2px 0;
+    padding: 0 10px;
+}
+
+.find_pharm_info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-bottom: 12px;
+    padding-right: 10px;
+    font-family: 'Rubik', sans-serif;
+}
+
+.find_pharm_title {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.find_pharm_address {
+    font-size: 13px;
+}
+
+.find_pharm_name {
+    min-width: 250px;
+}
+
+.find_pharm_country {
+    width: auto;
+    font-size: 12px;
+}
+
+.find_pharm_count {
+    min-width: 250px;
+}
+
+.find_pharm_price {
+    text-align: right;
+    min-width: 100px;
+}
+
+.find_hr {
+    background-color:rgb(24, 164, 189);
+    border-width: 0;
+    height: 1px;
+    margin-bottom: 25px;
+}
+

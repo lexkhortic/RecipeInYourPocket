@@ -1,14 +1,15 @@
 package by.lexkhortic.recipeInPocket.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.List;
 
+
 @Data
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -42,5 +43,13 @@ public class Pharmacy implements Serializable {
         this.latitude = latitude;
         this.longitude = longitude;
         this.medicinesList = medicinesList;
+    }
+
+    public Pharmacy(String city, String address, String title, double latitude, double longitude) {
+        this.city = city;
+        this.address = address;
+        this.title = title;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 }

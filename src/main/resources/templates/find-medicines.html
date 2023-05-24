@@ -3,22 +3,80 @@
 <head th:replace="~{fragments/header :: common_head(~{::title})}">
     <title>Поиск лекарств</title>
 </head>
-<body>
+<body class="find_body">
+<header th:replace="~{fragments/header :: header_index}"></header>
 
-<div th:each="pharmacy : ${pharmaciesMap}">
-    <div th:text="${pharmacy.key.title}">key value</div>
-    <table>
-        <tr th:each="med, iter : ${pharmacy.value}" th:if="${iter.last} == false">
-            <td th:text="${iter.count}">Counter</td>
-            <td th:text="${med.name}">Name medicine</td>
-            <td th:text="${med.countryManufacturer}">Country medicine</td>
-            <td th:text="${med.count} + ' шт'">Count in pharmacy</td>
-            <td th:text="${med.price} + ' руб.'">Price</td>
-        </tr>
-    </table>
-    <div th:each="med, iter : ${pharmacy.value}" th:if="${iter.last} == true">
-        <div th:text="${med.name} + ${med.price} + ' руб.'"></div>
-    </div>
+<div class="find_not_found" th:if="${pharmaciesMap == null or pharmaciesMap.empty}">
+    Медикаментов по вашему запросу не найдено :(
 </div>
+
+<div th:unless="${pharmaciesMap == null or pharmaciesMap.empty}">
+    <div class="find_title" >
+        <div>По запросу найдено:</div>
+        <div>Здесь есть твои лекарства!</div>
+    </div>
+    <div class="find_container">
+
+        <div>
+            <div th:each="pharmacy : ${pharmaciesMap}">
+                <div class="find_full_pharmacy">
+                    <div class="find_pharm_info">
+                        <div class="find_pharm_title" th:text="${pharmacy.key.title}">Title pharmacy</div>
+                        <div class="find_pharm_address" th:text="${pharmacy.key.address}">Address pharmacy</div>
+                    </div>
+                    <div class="find_pharmacies" th:each="med, iter : ${pharmacy.value}" th:if="${iter.last} == false">
+                        <div>
+                            <div class="find_pharm_name" th:text="${med.name}">Name medicine</div>
+                            <div class="find_pharm_country" th:text="${med.countryManufacturer}">Country medicine</div>
+                        </div>
+                        <div class="find_pharm_count" th:text="'В наличии: ' + ${med.count}">Count in pharmacy</div>
+                        <div class="find_pharm_price" th:text="${med.price} + ' руб.'">Price</div>
+                    </div>
+                </div>
+
+                <div class="find_total" th:each="med, iter : ${pharmacy.value}" th:if="${iter.last} == true">
+                    <div th:text="'Итого: ' + ${med.name} + ${med.price} + ' руб.'"></div>
+                    <hr class="find_hr">
+                </div>
+            </div>
+        </div>
+
+        <div class="find_map">
+            <div id="yandex_maps"></div>
+            <div th:text="${all}"></div>
+        </div>
+    </div>
+    <script th:inline="javascript">
+
+        let listPharmacies = /*[[${allPharmaciesWhereHaveMedicines}]]*/ null;
+
+        ymaps.ready(init);
+
+        function init(){
+            var myMap = new ymaps.Map("yandex_maps", {
+                // Координаты центра карты.
+                // Порядок по умолчанию: «широта, долгота».
+                center: [53.902287, 27.561824],//Минск
+                // от 0 (весь мир) до 19.
+                zoom: 11,
+            }, {
+                // Поиск по организациям.
+                searchControlProvider: 'yandex#search'
+            });
+
+            listPharmacies.forEach(pharmacy => {
+                myMap.geoObjects.add(
+                    new ymaps.Placemark(
+                        [pharmacy.latitude, pharmacy.longitude],
+                        { balloonContent: `${pharmacy.city + ', ' + pharmacy.address}<br>${pharmacy.title}`, iconCaption: ''},
+                        { preset: 'islands#blueCircleDotIconWithCaption', iconCaptionMaxWidth: '20'}
+                    ));
+            });
+        }
+    </script>
+
+</div>
+
+<footer th:replace="~{fragments/footer :: footer}"></footer>
 </body>
 </html>

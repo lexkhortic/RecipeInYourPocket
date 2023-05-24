@@ -5,8 +5,6 @@ import by.lexkhortic.recipeInPocket.models.Medicine;
 import by.lexkhortic.recipeInPocket.models.Pharmacy;
 import by.lexkhortic.recipeInPocket.repositories.PharmacyRepository;
 import by.lexkhortic.recipeInPocket.services.IndexServices;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,7 +43,6 @@ public class IndexController {
 
         List<Medicine> medicinesID = indexServices.findAllIDMedicines(medicinesList);
 
-        medicinesID.forEach(System.out::println);
         for (Medicine medicine : medicinesID) {
             medicinePharmaciesMap
                     .computeIfAbsent(medicine.getName(), v -> new HashSet<>())

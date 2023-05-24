@@ -26,7 +26,7 @@ public class OwnerController {
         List<Pharmacy> pharmacies = owner.getPharmaciesList();
         model.addAttribute("ownerID", owner.getId());
         model.addAttribute("company_name", owner.getNameCompany());
-        model.addAttribute("pharmacies", owner.getPharmaciesList());
+        model.addAttribute("pharmacies", owner.getPharmaciesList().stream().sorted().collect(Collectors.toList()));
 
         if (pharmacies.isEmpty()) {
             model.addAttribute("pharmacy", null);
@@ -191,9 +191,8 @@ public class OwnerController {
         if (owner.getPharmaciesList().isEmpty() || owner.getPharmaciesList() == null) {
             return "redirect:/company/" + owner_id + "/0";
         } else {
-            return "redirect:/company/" + owner_id + "/" + owner.getPharmaciesList().get(0);
+            return "redirect:/company/" + owner_id + "/" + owner.getPharmaciesList().get(0).getId();
         }
-
     }
 
 }

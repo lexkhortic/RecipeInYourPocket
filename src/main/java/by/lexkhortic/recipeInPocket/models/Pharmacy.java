@@ -1,6 +1,6 @@
 package by.lexkhortic.recipeInPocket.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "pharmacies")
-public class Pharmacy implements Serializable {
+public class Pharmacy implements Serializable, Comparable<Pharmacy> {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
@@ -51,5 +51,10 @@ public class Pharmacy implements Serializable {
         this.title = title;
         this.latitude = latitude;
         this.longitude = longitude;
+    }
+
+    @Override
+    public int compareTo(Pharmacy o) {
+        return title.compareTo(o.getTitle());
     }
 }
